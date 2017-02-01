@@ -1,4 +1,4 @@
-# Camination - Stop Motion, Timelapse and Animation using Web Cams
+# Stop Motion, Timelapse and Animation using Web Cams
 
 This software was originally created for use with Scouts - that is children
 aged 10 1/2 - 14. Worked really well for them.
