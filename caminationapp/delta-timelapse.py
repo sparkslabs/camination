@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright 2017 Michael Sparks
+# Copyright 2017 Michael Sparks - sparks.m@gmail.com
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,6 +13,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+
+#
+# Note: The functionality from this app is not yet integrated into the main app
+# in case you were wondering why this doesn't seem to work.
+#
+# It will work stand alone though it makes a number of assumptions.
 #
 
 import os
