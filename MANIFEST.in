@@ -1,0 +1,5 @@
+recursive-include bin *
+
+include README.md
+include stdeb.cfg
+
