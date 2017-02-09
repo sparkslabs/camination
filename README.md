@@ -1,8 +1,16 @@
 # Stop Motion, Timelapse and Animation using Web Cams
+# Version: 0.1.1
 
 This software was originally created for use with Scouts - that is children
 aged 10 1/2 - 14. Worked really well for them. Should work well for younger
 children too.
+
+    Note: this software has been used in my environment well. It works
+    well for me. I am packaging this to make it nicer, and if you have
+    any wish list items please create an issue. They'll be categorised
+    into a todo.txt file and closed - unless you implement them :-)
+
+    pull requests very welcome
 
 ## Features
 
