@@ -1,0 +1,4 @@
+Bunch of things need doing, but the primary one is a major refactor to remove duplication.
+
+  - this tool was a bunch of quick hacks that have been reused for different
+    purposes, so it'd be worth revisiting as a collection of reusabe chunks.
