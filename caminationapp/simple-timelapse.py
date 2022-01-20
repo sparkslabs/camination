@@ -32,8 +32,10 @@ pygame.camera.init()
 displaysize = (800, 600)
 capturesize = (640, 480)
 imagesize = (352, 288)
+imagesize = displaysize = capturesize
+
 imageorigin = (0,0)
-device = "/dev/video0"
+device = "/dev/video1"
 
 basedir = os.path.expanduser("~")
 
@@ -41,18 +43,24 @@ basedir = os.path.expanduser("~")
 camera = pygame.camera.Camera(device, capturesize)
 camera.start()
 
+for i in xrange(20):
+    snapshot = camera.get_image()
+
+count = 0
+
 while 1:
-    for i in range(5):
-        time.sleep(0.5)
-        sys.stdout.write(".")
-        sys.stdout.flush()
+#    for i in range(5):
+#        time.sleep(0.5)
+#        sys.stdout.write(".")
+#        sys.stdout.flush()
 
     print " SNAP"
 
-    for i in xrange(20):
-        snapshot = camera.get_image()
+    snapshot = camera.get_image()
 
     t = time.localtime()
     filename = "%04d%02d%02d.%02d%02d%02d.jpg" %(t.tm_year,t.tm_mon,t.tm_mday,t.tm_hour,t.tm_min,t.tm_sec)
+    filename = "%06d.jpg" % (count,)
+    count += 1
 
     pygame.image.save(snapshot, basedir+"/Snaps/"+filename)

@@ -29,13 +29,20 @@ import pygame.camera
 pygame.init()
 pygame.camera.init()
 
-displaysize = (800, 600)
-capturesize = (640, 480)
-imagesize = (352, 288)
+#displaysize = (800, 600)
+#capturesize = (640, 480)
+#imagesize = (352, 288)
+
+displaysize = (1280, 800)
+capturesize = (1280, 800)
+imagesize = (1280, 800)
+
 imageorigin = (0,0)
-device = "/dev/video0"
+device = "/dev/video1"
 
 basedir = os.path.expanduser("~")
+
+print "STARTUP"
 
 def average_color(p1, p2):
     average = [ (p1[i]+p2[i]) / 2 for i in [0,1,2]]
@@ -62,6 +69,12 @@ def change(oldsnap, newsnap):
             print "Colour change", p10, p20, p1sum, p2sum, d,maxd
             return True
 
+def save_image(snap):
+    print " SNAP"
+    t = time.localtime()
+    filename = "%04d%02d%02d.%02d%02d%02d.jpg" %(t.tm_year,t.tm_mon,t.tm_mday,t.tm_hour,t.tm_min,t.tm_sec)
+    pygame.image.save(snap, basedir+"/Snaps/"+filename)
+
 # display = pygame.display.set_mode(displaysize)
 camera = pygame.camera.Camera(device, capturesize)
 camera.start()
@@ -70,24 +83,26 @@ maxd = 0
 for i in xrange(20): # Taking multiple images allows the camera to settle
     snap = camera.get_image()
 
+lastsnap = time.time()
+save_image(snap)
+
 oldsnap = None
 while 1:
-    #for i in range(5):
-        #time.sleep(0.5)
-        #sys.stdout.write(".")
-        #sys.stdout.flush()
-
-    #for i in xrange(20): # Taking multiple images allows the camera to settle
     if 1:
         snap = camera.get_image()
 
     if change(oldsnap, snap):
-        print " SNAP"
         oldsnap = snap
-        t = time.localtime()
-        filename = "%04d%02d%02d.%02d%02d%02d.jpg" %(t.tm_year,t.tm_mon,t.tm_mday,t.tm_hour,t.tm_min,t.tm_sec)
 
         maxd = 0
-        for i in xrange(20): # Taking multiple images allows the camera to settle
-            snap = camera.get_image()
-        pygame.image.save(snap, basedir+"/Snaps/"+filename)
+#        for i in xrange(20): # Taking multiple images allows the camera to settle
+#            snap = camera.get_image()
+        save_image(snap)
+
+    if (time.time() - lastsnap) > 5:
+        oldsnap = snap
+        save_image(snap)
+        lastsnap = time.time()
+
+    time.sleep(0.1)
+ 
